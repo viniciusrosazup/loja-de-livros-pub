@@ -4,17 +4,17 @@ import br.com.example.livro.entrypoint.model.Livro
 import java.util.*
 
 
-class LivroDto(
-    val id:UUID,
-    val autor: String,
-    val description: String,
-    val numero_de_paginas: String,
-    val isbn: String,
-    val preco: Double
+data class LivroDto(
+    val id: UUID? = null,
+    val autor: String = "",
+    val description: String = "",
+    val numero_de_paginas: String = "",
+    val isbn: String = "",
+    val preco: Double = 0.0
 ) {
     fun toModel(): Livro {
         return Livro(
-            id, autor, description, numero_de_paginas, isbn, preco
+            id!!, autor, description, numero_de_paginas, isbn, preco
         )
 
     }
