@@ -1,8 +1,8 @@
 package br.com.example.livro.entrypoint.controller
 
+import br.com.example.livro.core.mapper.LivroConverter
 import br.com.example.livro.core.ports.LivroServicePort
 import br.com.example.livro.entrypoint.dto.LivroDto
-import br.com.example.livro.entrypoint.model.Livro
 import io.micronaut.http.MediaType.APPLICATION_JSON
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
@@ -17,25 +17,9 @@ class LivroController(private val service: LivroServicePort) {
 
     @Post("cadastro")
     @Produces(APPLICATION_JSON)
-    fun createLivro(@Body request: LivroDto): Livro {
-        val livro = request.toModel()
-
+    fun createLivro(@Body request: LivroDto): LivroDto {
         logger.info("Chamando o metodo do service{}")
-
-        service.livroMessage(
-            Livro(
-                livro.id,
-                livro.autor,
-                livro.description,
-                livro.numero_de_paginas,
-                livro.isbn,
-                livro.preco
-            )
-        )
-
-        return livro
-
-
+        return service.livroMessage(LivroConverter.livroDtoToLivro(request))
     }
 
 

@@ -1,6 +1,5 @@
 package br.com.example.livro.entrypoint.dto
 
-import br.com.example.livro.entrypoint.model.Livro
 import java.util.*
 
 
@@ -12,11 +11,5 @@ data class LivroDto(
     val isbn: String = "",
     val preco: Double = 0.0
 ) {
-    fun toModel(): Livro {
-        return Livro(
-            id!!, autor, description, numero_de_paginas, isbn, preco
-        )
-
-    }
 
 }

@@ -7,7 +7,7 @@ import br.com.example.livro.infrastructure.model.LivroEvent
 class LivroConverter {
     companion object {
         fun livroDtoToLivro(livroDto: LivroDto) = Livro(
-            livroDto.id!!,
+            livroDto.id,
             livroDto.autor,
             livroDto.description,
             livroDto.isbn,
@@ -15,7 +15,7 @@ class LivroConverter {
             livroDto.preco
         )
 
-        fun livroToLivroEvent(livro: br.com.example.livro.entrypoint.model.Livro) = LivroEvent(
+        fun livroToLivroEvent(livro: Livro) = LivroEvent(
             livro.id,
             livro.autor,
             livro.description,
@@ -25,7 +25,7 @@ class LivroConverter {
         )
 
         fun livroEventToLivro(livroEvent: LivroEvent): Livro = Livro(
-            livroEvent.id!!,
+            livroEvent.id,
             livroEvent.autor!!,
             livroEvent.description,
             livroEvent.numero_de_paginas,
